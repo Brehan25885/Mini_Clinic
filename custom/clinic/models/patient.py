@@ -6,4 +6,4 @@ class Patient(models.Model):
 
     name = fields.Char()
     mobile= fields.Char()
-    visits_ids=fields.One2many('clinic.visit','visit_id')
+    visits_ids=fields.One2many('clinic.visit','patient_id')

@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class Visit(models.Model):
@@ -8,7 +8,20 @@ class Visit(models.Model):
     price = fields.Float()
     state = fields.Selection([
         ('new', "New"),
-        ('inv', " Inv"),
+        ('invoice', "Invoice"),
         ('done', " Done"),
     ])
+
+    @api.multi
+    def new(self):
+        for record in self:
+            record.state = "new"
+
+    def invoice(self):
+        for record in self:
+            record.state = "invoice"
+
+    def done(self):
+        for record in self:
+            record.state = "done"
 

@@ -1,0 +1,56 @@
+<odoo>
+ <data>
+      <record id="clinic_visit_view" model="ir.actions.act_window">
+            <field name="name">Visits</field>
+            <field name="res_model">clinic.visit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+
+
+
+        <record id="clinic_visit_tree" model="ir.ui.view">
+            <field name="model">clinic.visit</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="patient_id"/>
+                    <field name="price"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record id="clinic_visit_form" model="ir.ui.view">
+            <field name="model">clinic.visit</field>
+            <field name="arch" type="xml">
+                <header>
+                        <button name="new" type="object" string="New" attrs="{'invisible':[('state', '=', 'new')]}"/>
+                       <button name="invoice" type="object" string="Invoice" attrs="{'invisible':[('state', '=', 'invoice')]}"/>
+                        <button name="done" type="object" string="Done" attrs="{'invisible':[('state', '=', 'done')]}"/>
+                        <field name="state" widget="statusbar" clickable="true"/>
+
+                    </header>
+
+                <form>
+                    <group>
+                        <field name="patient_id"/>
+                         <field name="state"/>
+                        <field name="price"/>
+                        <field name="create_date"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+
+ <menuitem id="clinic_main" name="Clinic" />
+        <menuitem id="visit_menu" name="Visits"
+                  parent="clinic_main"
+                  action="clinic_visit_view"/>
+
+ </data>
+</odoo>
